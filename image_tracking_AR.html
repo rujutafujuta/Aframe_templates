@@ -1,0 +1,29 @@
+<!-- Description : Template for using image tracking to display 3D models with animation--->
+<!-- change the image target src to your image's path --->
+
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script> <!--needed for image tracking-->
+    
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script> <!--needed to animate gltf files-->
+  </head>
+  <body>
+    <a-scene mindar-image="imageTargetSrc: <your image path here>;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+      <!--the mindar-image contains link to the image tracking file-->
+      <a-assets>
+        <a-asset-item id="map" src = "https://cdn.glitch.me/0078c494-9b0c-44ec-8a00-0804dd38b9bd/the_marauders_map_free_rigged.glb?v=1708362383786"></a-asset-item>
+      </a-assets>
+      <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+      <a-entity mindar-image-target="targetIndex: 0">
+        
+        <a-gltf-model src ="#map" 
+                      animation-mixer="clip: Open" 
+                      scale= "30 15 25" 
+                      rotation="90 0 0" ></a-gltf-model>
+      </a-entity>
+    </a-scene>
+  </body>
+</html>
